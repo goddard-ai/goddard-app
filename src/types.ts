@@ -1,64 +1,46 @@
-export interface Space {
+export type SidebarItem =
+  | "sessions"
+  | "prs"
+  | "search"
+  | "tasks"
+  | "roadmap"
+  | "spec"
+  | "pages"
+  | "extensions"
+  | "settings";
+
+export type TabType = "main" | "session" | "pr" | "changes" | "specFile" | "page";
+
+export interface Tab {
   id: string;
-  name: string;
+  type: TabType;
+  title: string;
+  contentId?: string; // e.g., sessionId, prId
+  canClose: boolean;
 }
 
-export interface List {
+export type SessionStatus = "Active" | "Blocked" | "Done";
+
+export interface Session {
   id: string;
-  name: string;
-  space_id?: string;
+  status: SessionStatus;
+  repository: string;
+  prName?: string;
+  lastActivity: string;
+  messages: SessionMessage[];
 }
 
-export interface User {
+export interface SessionMessage {
   id: string;
-  username: string;
-  email: string;
+  sender: "user" | "agent";
+  content: string;
+  timestamp: string;
 }
 
-export interface Priority {
-  id?: string;
-  priority: string;
-  color?: string;
-  orderindex?: string;
-}
-
-export interface Task {
+export interface PullRequest {
   id: string;
-  name: string;
-  description: string;
-  status: {
-    status: string;
-    color: string;
-    type: string;
-  };
-  priority: Priority | null;
-  assignees: User[];
-  list: {
-    id: string;
-    name: string;
-  };
+  status: "Open" | "Closed";
+  repository: string;
+  title: string;
   url: string;
 }
-
-export type SessionStatus = "active" | "paused" | "archived";
-
-export interface JulesSession {
-  sessionId: string;
-  taskId: string;
-  status: SessionStatus;
-  repoPath: string;
-  branchName?: string;
-  prLink?: string;
-  lastActivity?: string;
-}
-
-export interface Activity {
-  id: string;
-  type: string;
-  timestamp: string;
-  details: any;
-}
-
-export type SpaceRepoMapping = Record<string, string>;
-
-export type ActiveJulesSessions = Record<string, JulesSession>;
