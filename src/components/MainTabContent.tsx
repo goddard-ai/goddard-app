@@ -3,6 +3,11 @@ import { SessionsView } from "./views/SessionsView";
 import { PullRequestsView } from "./views/PullRequestsView";
 import { SpecView } from "./views/SpecView";
 import { PagesView } from "./views/PagesView";
+import { TasksView } from "./views/TasksView";
+import { RoadmapView } from "./views/RoadmapView";
+import { ExtensionsView } from "./views/ExtensionsView";
+import { SearchView } from "./views/SearchView";
+import { SettingsView } from "./views/SettingsView";
 
 export function MainTabContent() {
   const currentTabId = activeTabId.value;
@@ -20,15 +25,15 @@ export function MainTabContent() {
       case "pages":
         return <PagesView />;
       case "search":
-        return <div style={{ padding: '20px' }}>Global Search (Coming Soon)</div>;
+        return <SearchView />;
       case "tasks":
-        return <div style={{ padding: '20px' }}>Tasks Integration (Coming Soon)</div>;
+        return <TasksView />;
       case "roadmap":
-        return <div style={{ padding: '20px' }}>Roadmap (Coming Soon)</div>;
+        return <RoadmapView />;
       case "extensions":
-        return <div style={{ padding: '20px' }}>Extensions (Coming Soon)</div>;
+        return <ExtensionsView />;
       case "settings":
-        return <div style={{ padding: '20px' }}>Settings (Coming Soon)</div>;
+        return <SettingsView />;
       default:
         return <div style={{ padding: '20px' }}>Select an item from the sidebar</div>;
     }
